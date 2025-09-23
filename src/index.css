@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+
+/* Animaciones suaves */
+@keyframes fadeSlideIn {
+	from { opacity: 0; transform: translateY(6px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+.question-enter { animation: fadeSlideIn .24s ease-out; }
+
+@keyframes slideLeftIn {
+	from { opacity: 0; transform: translateX(16px); }
+	to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideRightIn {
+	from { opacity: 0; transform: translateX(-16px); }
+	to { opacity: 1; transform: translateX(0); }
+}
+.slide-left-in { animation: slideLeftIn .22s ease-out; }
+.slide-right-in { animation: slideRightIn .22s ease-out; }
+
+/* Backgrounds amigables */
+.app-bg-light {
+	background: linear-gradient(180deg, rgba(248,250,252,1) 0%, rgba(241,245,249,1) 100%);
+}
+.app-bg-dark {
+	background: linear-gradient(180deg, rgba(2,6,23,1) 0%, rgba(15,23,42,1) 100%);
+}
