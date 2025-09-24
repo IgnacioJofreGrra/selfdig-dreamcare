@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { api } from '../../services/api'
 import { Link } from 'react-router-dom'
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import React, { Suspense } from 'react'
+const AdminBarChart = React.lazy(() => import('./AdminBarChart'))
 import { ThemeToggle } from '../../components/ThemeToggle'
 
 type ResultRow = {
@@ -87,18 +88,9 @@ export function AdminDashboard() {
           </div>
           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-sm">
             <h2 className="font-medium mb-3">Evaluaciones por tipo</h2>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={stats}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="quiz" />
-                  <YAxis allowDecimals={false} />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="count" fill="#0f172a" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
+            <Suspense fallback={<div className="text-sm text-slate-600">Cargando gráfico…</div>}>
+              <AdminBarChart data={stats} />
+            </Suspense>
           </div>
         </div>
       )}
