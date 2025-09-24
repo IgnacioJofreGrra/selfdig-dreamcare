@@ -93,7 +93,8 @@ export function Quiz() {
 
   return (
     <div>
-  <main className={`max-w-xl mx-auto p-4 space-y-6 pb-24 dark:text-slate-100 min-h-screen app-bg-light dark:app-bg-dark`} onKeyDown={onKeyDown} tabIndex={-1}>
+      <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-white text-slate-900 px-3 py-2 rounded shadow">Saltar al contenido</a>
+      <main id="contenido" role="main" className={`max-w-xl mx-auto p-4 space-y-6 pb-24 dark:text-slate-100 min-h-screen app-bg-light dark:app-bg-dark`} onKeyDown={onKeyDown} tabIndex={-1}>
         <ProgressHeader current={index + 1} total={totalItems} />
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">Cuestionario</h1>
@@ -116,10 +117,10 @@ export function Quiz() {
           </div>
         </fieldset>
 
-        <div className="fixed bottom-0 left-0 right-0 border-t bg-white/90 dark:bg-slate-900/90 backdrop-blur-md">
+        <div className="fixed bottom-0 left-0 right-0 border-t bg-white/90 dark:bg-slate-900/90 backdrop-blur-md pb-[max(env(safe-area-inset-bottom),0px)]">
           <div className="max-w-xl mx-auto p-3 flex items-center justify-between gap-2">
           <button
-            className="px-3 py-2 border rounded disabled:opacity-50"
+            className="px-3 py-2 min-h-[44px] border rounded disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
             onClick={onPrev}
             disabled={index === 0}
           >
@@ -127,14 +128,13 @@ export function Quiz() {
           </button>
           <div className="flex gap-2">
             <button
-              className="px-3 py-2 border rounded"
+              className="px-3 py-2 min-h-[44px] border rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
               onClick={() => { resetQuiz(quizId); setIndex(0) }}
             >
               Reiniciar
             </button>
             <button
-              className="px-4 py-2 rounded text-white disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ backgroundColor: '#0f172a' }}
+              className="px-4 py-2 min-h-[44px] rounded text-white disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 bg-slate-900"
               onClick={onNext}
               disabled={!hasAnswer}
             >

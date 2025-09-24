@@ -16,7 +16,23 @@ npm run dev
 
 Frontend corre en http://localhost:5173
 
-Para probar funciones serverless localmente puede usar la CLI de Vercel (opcional): `vercel dev`.
+Para probar funciones serverless localmente usa Vercel CLI (recomendado):
+
+```pwsh
+# 1) Login y linkear proyecto (una vez)
+npm run vercel:login
+npm run vercel:link
+
+# 2) Traer variables de entorno del proyecto (si ya las tienes en Vercel)
+npm run vercel:env:pull
+
+# 3) Levantar frontend + /api juntos
+npm run vercel:dev
+```
+
+Notas:
+- `vercel dev` levanta la app unificada: Vite y las funciones en `/api` con emulación local.
+- Si no tienes variables en Vercel, crea un `.env` copiando de `.env.example` y ajusta valores.
 
 ## Variables de entorno
 
@@ -35,6 +51,7 @@ ADMIN_PASSWORD=admin1234
 - Framework: Vite. Carpeta de salida: `dist`.
 - Las funciones en `/api` se despliegan automáticamente como serverless.
 - Base de datos: Vercel Postgres (recomendado). Ejecute `npm run db:setup` para ver el SQL del esquema si quiere crear tablas manualmente.
+ - En local, `vercel dev` inyecta variables definidas en el Dashboard o en `.env.local`.
 
 ## API
 

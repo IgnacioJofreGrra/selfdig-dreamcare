@@ -12,7 +12,7 @@ export function ProgressHeader({ current, total }: Props) {
           <span>Pregunta {current} de {total}</span>
           <span>{percent}%</span>
         </div>
-        <div className="w-full bg-slate-200 dark:bg-slate-800 rounded h-2 mt-2">
+        <div className="w-full bg-slate-200 dark:bg-slate-800 rounded h-2 mt-2" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percent} aria-label="Progreso del cuestionario">
           <div className="bg-slate-900 dark:bg-slate-200 h-2 rounded transition-all" style={{ width: `${percent}%` }} />
         </div>
       </div>

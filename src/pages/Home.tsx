@@ -3,7 +3,9 @@ import { quizzes } from '../shared/quizzes/meta'
 
 export function Home() {
   return (
-    <main className="min-h-screen app-bg-light dark:app-bg-dark">
+    <>
+      <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-white text-slate-900 px-3 py-2 rounded shadow">Saltar al contenido</a>
+      <main id="contenido" role="main" className="min-h-screen app-bg-light dark:app-bg-dark">
       <div className="max-w-3xl mx-auto p-6 space-y-8">
         <header className="text-center space-y-3 pt-4">
           <h1 className="text-3xl font-semibold text-slate-900 dark:text-slate-100">Plataforma de Evaluaciones</h1>
@@ -26,6 +28,7 @@ export function Home() {
           <Link className="underline" to="/admin/login">Administración</Link>
         </div>
       </div>
-    </main>
+      </main>
+    </>
   )
 }

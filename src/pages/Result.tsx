@@ -5,16 +5,21 @@ export function Result() {
   const { quizId, result } = state ?? {}
   if (!quizId || !result) {
     return (
-      <main className="max-w-xl mx-auto p-6 min-h-screen app-bg-light dark:app-bg-dark">
+      <>
+        <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-white text-slate-900 px-3 py-2 rounded shadow">Saltar al contenido</a>
+        <main id="contenido" role="main" className="max-w-xl mx-auto p-6 min-h-screen app-bg-light dark:app-bg-dark">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6">
           <p className="text-slate-700 dark:text-slate-300">No hay resultado para mostrar.</p>
           <Link className="underline mt-3 inline-block" to="/">Volver</Link>
         </div>
-      </main>
+        </main>
+      </>
     )
   }
   return (
-    <main className="max-w-xl mx-auto p-6 space-y-5 min-h-screen app-bg-light dark:app-bg-dark">
+    <>
+      <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-white text-slate-900 px-3 py-2 rounded shadow">Saltar al contenido</a>
+      <main id="contenido" role="main" className="max-w-xl mx-auto p-6 space-y-5 min-h-screen app-bg-light dark:app-bg-dark">
       <h1 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">Resultado</h1>
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
         <div className="flex items-center justify-between">
@@ -30,6 +35,7 @@ export function Result() {
         )}
       </div>
       <Link className="px-3 py-2 bg-slate-900 text-white rounded-xl inline-block" to="/">Volver al inicio</Link>
-    </main>
+      </main>
+    </>
   )
 }

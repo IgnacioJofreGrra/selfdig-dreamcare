@@ -30,3 +30,13 @@ html, body, #root { height: 100%; }
 .app-bg-dark {
 	background: linear-gradient(180deg, rgba(2,6,23,1) 0%, rgba(15,23,42,1) 100%);
 }
+
+/* Respeto a reduce motion */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}

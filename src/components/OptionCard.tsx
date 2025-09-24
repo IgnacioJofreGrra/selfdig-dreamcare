@@ -17,13 +17,14 @@ export function OptionCard({ name, value, label, checked, onChange }: Props) {
     >
       <input
         type="radio"
-        className="h-5 w-5 accent-slate-900 dark:accent-slate-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400"
+        className="h-5 w-5 accent-slate-900 dark:accent-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400"
         name={name}
         checked={checked}
         onChange={onChange}
         value={value}
+        aria-checked={checked}
       />
-      <span className="text-[15px] select-none">{label}</span>
+      <span className="text-[15px] select-none leading-relaxed">{label}</span>
     </label>
   )
 }

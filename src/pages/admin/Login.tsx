@@ -32,11 +32,36 @@ export function AdminLogin() {
           <h1 className="text-2xl font-semibold">Acceso Administrador</h1>
           <ThemeToggle />
         </div>
-        <form className="space-y-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm" onSubmit={onSubmit}>
-          <input className="w-full border rounded-md p-2 bg-white dark:bg-slate-900" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-          <input className="w-full border rounded-md p-2 bg-white dark:bg-slate-900" placeholder="Contraseña" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-          {error && <div className="text-red-600 text-sm">{error}</div>}
-          <button className="w-full py-2 bg-slate-900 text-white rounded-xl" disabled={loading}>{loading ? 'Entrando…' : 'Entrar'}</button>
+        <form className="space-y-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm" onSubmit={onSubmit} noValidate>
+          <div className="space-y-1">
+            <label htmlFor="admin-email" className="text-sm">Email</label>
+            <input
+              id="admin-email"
+              className="w-full border rounded-md p-2 bg-white dark:bg-slate-900"
+              placeholder="admin@ejemplo.com"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              type="email"
+              autoComplete="username"
+              required
+            />
+          </div>
+          <div className="space-y-1">
+            <label htmlFor="admin-password" className="text-sm">Contraseña</label>
+            <input
+              id="admin-password"
+              className="w-full border rounded-md p-2 bg-white dark:bg-slate-900"
+              placeholder="••••••••"
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              autoComplete="current-password"
+              required
+              minLength={6}
+            />
+          </div>
+          {error && <div className="text-red-600 text-sm" role="alert">{error}</div>}
+          <button className="w-full py-2 min-h-[44px] bg-slate-900 text-white rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400" disabled={loading}>{loading ? 'Entrando…' : 'Entrar'}</button>
         </form>
       </div>
     </main>
