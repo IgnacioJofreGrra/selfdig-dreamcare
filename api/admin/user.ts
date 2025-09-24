@@ -14,12 +14,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const patient = await db`SELECT id, email, created_at FROM patients WHERE id=${userId} LIMIT 1;`
   if (!patient.rowCount) return res.status(404).send('No encontrado')
   const assessments = await db`SELECT id, quiz_id, score, interpretation, created_at FROM assessments WHERE patient_id=${userId} ORDER BY created_at DESC;`
-  const assessmentIds = assessments.rows.map((r: any) => r.id)
-  let responses: any[] = []
-  if (assessmentIds.length) {
-    const resp = await db`SELECT assessment_id, item_index, value FROM responses WHERE assessment_id = ANY(${assessmentIds});`
-    responses = resp.rows
-  }
+  // Traer respuestas mediante un JOIN evitando pasar arrays como parámetro
+  const resp = await db`
+    SELECT r.assessment_id, r.item_index, r.value
+    FROM responses r
+    JOIN assessments a ON a.id = r.assessment_id
+    WHERE a.patient_id = ${userId};
+  `
+  const responses = resp.rows
   return res.status(200).json({
     patient: patient.rows[0],
     assessments: assessments.rows,
