@@ -117,10 +117,10 @@ export function Quiz() {
           </div>
         </fieldset>
 
-        <div className="fixed bottom-0 left-0 right-0 border-t bg-white/90 dark:bg-slate-900/90 backdrop-blur-md pb-[max(env(safe-area-inset-bottom),0px)]">
+        <div className="fixed bottom-0 left-0 right-0 border-t border-slate-200 dark:border-slate-700 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-[0_-4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0_-4px_12px_rgba(0,0,0,0.35)] pb-[max(env(safe-area-inset-bottom),0px)]">
           <div className="max-w-xl mx-auto p-3 flex items-center justify-between gap-2">
           <button
-            className="px-3 py-2 min-h-[44px] border rounded disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+            className="btn-outline min-h-[44px]"
             onClick={onPrev}
             disabled={index === 0}
           >
@@ -128,13 +128,13 @@ export function Quiz() {
           </button>
           <div className="flex gap-2">
             <button
-              className="px-3 py-2 min-h-[44px] border rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+              className="btn-outline min-h-[44px]"
               onClick={() => { resetQuiz(quizId); setIndex(0) }}
             >
               Reiniciar
             </button>
             <button
-              className="px-4 py-2 min-h-[44px] rounded text-white disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 bg-slate-900"
+              className="btn-primary min-h-[44px]"
               onClick={onNext}
               disabled={!hasAnswer}
             >

@@ -37,7 +37,7 @@ export function AdminLogin() {
             <label htmlFor="admin-email" className="text-sm">Email</label>
             <input
               id="admin-email"
-              className="w-full border rounded-md p-2 bg-white dark:bg-slate-900"
+              className="w-full"
               placeholder="admin@ejemplo.com"
               value={email}
               onChange={e => setEmail(e.target.value)}
@@ -50,7 +50,7 @@ export function AdminLogin() {
             <label htmlFor="admin-password" className="text-sm">Contraseña</label>
             <input
               id="admin-password"
-              className="w-full border rounded-md p-2 bg-white dark:bg-slate-900"
+              className="w-full"
               placeholder="••••••••"
               type="password"
               value={password}
@@ -61,7 +61,7 @@ export function AdminLogin() {
             />
           </div>
           {error && <div className="text-red-600 text-sm" role="alert">{error}</div>}
-          <button className="w-full py-2 min-h-[44px] bg-slate-900 text-white rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400" disabled={loading}>{loading ? 'Entrando…' : 'Entrar'}</button>
+          <button className="w-full btn-primary min-h-[44px]" disabled={loading}>{loading ? 'Entrando…' : 'Entrar'}</button>
         </form>
       </div>
     </main>
