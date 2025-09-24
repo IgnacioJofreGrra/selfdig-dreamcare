@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/api'
-import { ThemeToggle } from '../../components/ThemeToggle'
 
 export function AdminLogin() {
   const [email, setEmail] = useState('')
@@ -26,13 +25,12 @@ export function AdminLogin() {
   }
 
   return (
-    <main className="min-h-screen app-bg-light dark:app-bg-dark">
+  <main className="min-h-screen app-bg-light">
       <div className="max-w-sm mx-auto p-6">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl font-semibold">Acceso Administrador</h1>
-          <ThemeToggle />
         </div>
-        <form className="space-y-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm" onSubmit={onSubmit} noValidate>
+  <form className="space-y-3 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm" onSubmit={onSubmit} noValidate>
           <div className="space-y-1">
             <label htmlFor="admin-email" className="text-sm">Email</label>
             <input

@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { ThemeToggle } from '../../components/ThemeToggle'
 import { Spinner } from '../../components/Spinner'
 
 export function AdminUserDetail() {
@@ -38,33 +37,32 @@ export function AdminUserDetail() {
   }, [data, quizFilter, from, to, q])
 
   return (
-    <main className="min-h-screen app-bg-light dark:app-bg-dark">
+  <main className="min-h-screen app-bg-light">
       <div className="max-w-4xl mx-auto p-6 space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Detalle de Usuario</h1>
-          <ThemeToggle />
         </div>
 
         {loading && <Spinner label="Cargando datos…" />}
         {error && <div className="text-red-600">{error}</div>}
         {data && (
           <>
-            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4">
+            <section className="bg-white border border-slate-200 rounded-2xl p-4">
               <h2 className="font-medium mb-2">Paciente</h2>
               <div className="text-sm text-slate-700 dark:text-slate-300">ID: {data.patient.id}</div>
               <div className="text-sm text-slate-700 dark:text-slate-300">Email: {data.patient.email ?? '—'}</div>
               <div className="text-sm text-slate-700 dark:text-slate-300">Alta: {new Date(data.patient.created_at).toLocaleString()}</div>
             </section>
 
-            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 space-y-4">
+            <section className="bg-white border border-slate-200 rounded-2xl p-4 space-y-4">
               <div className="flex flex-wrap items-end gap-3">
                 <div className="flex-1 min-w-[180px]">
                   <label className="text-sm block mb-1">Buscar</label>
-                  <input className="w-full border rounded-md p-2 bg-white dark:bg-slate-900" placeholder="Interpretación, puntaje…" value={q} onChange={e => setQ(e.target.value)} />
+                  <input className="w-full" placeholder="Interpretación, puntaje…" value={q} onChange={e => setQ(e.target.value)} />
                 </div>
                 <div>
                   <label className="text-sm block mb-1">Test</label>
-                  <select className="border rounded-md p-2 bg-white dark:bg-slate-900" value={quizFilter} onChange={e => setQuizFilter(e.target.value)}>
+                  <select className="" value={quizFilter} onChange={e => setQuizFilter(e.target.value)}>
                     <option value="">Todos</option>
                     <option value="bai">BAI</option>
                     <option value="epds">EPDS</option>
@@ -73,11 +71,11 @@ export function AdminUserDetail() {
                 </div>
                 <div>
                   <label className="text-sm block mb-1">Desde</label>
-                  <input type="date" className="border rounded-md p-2 bg-white dark:bg-slate-900" value={from} onChange={e => setFrom(e.target.value)} />
+                  <input type="date" className="" value={from} onChange={e => setFrom(e.target.value)} />
                 </div>
                 <div>
                   <label className="text-sm block mb-1">Hasta</label>
-                  <input type="date" className="border rounded-md p-2 bg-white dark:bg-slate-900" value={to} onChange={e => setTo(e.target.value)} />
+                  <input type="date" className="" value={to} onChange={e => setTo(e.target.value)} />
                 </div>
               </div>
 

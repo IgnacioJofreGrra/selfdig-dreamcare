@@ -46,26 +46,26 @@ export function Home() {
   return (
     <>
       <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-white text-slate-900 px-3 py-2 rounded shadow">Saltar al contenido</a>
-      <main id="contenido" role="main" className="min-h-screen app-bg-light dark:app-bg-dark">
+  <main id="contenido" role="main" className="min-h-screen app-bg-light">
       <div className="max-w-3xl mx-auto p-6 space-y-8">
         <header className="text-center space-y-3 pt-4">
-          <h1 className="text-3xl font-semibold text-slate-900 dark:text-slate-100">Plataforma de Evaluaciones</h1>
-          <p className="text-slate-600 dark:text-slate-300">Seleccione un cuestionario para comenzar</p>
+          <h1 className="text-3xl font-semibold text-slate-900">Plataforma de Evaluaciones</h1>
+          <p className="text-slate-600">Seleccione un cuestionario para comenzar</p>
         </header>
         <ul className="grid sm:grid-cols-2 gap-4">
           {quizzes.map(q => (
-            <li key={q.id} className="border border-slate-200 dark:border-slate-700 rounded-2xl p-5 bg-white/80 dark:bg-slate-900/60 shadow-sm">
+            <li key={q.id} className="border border-slate-200 rounded-2xl p-5 bg-white/80 shadow-sm">
               <div className="flex flex-col h-full">
                 <div className="flex-1">
-                  <h2 className="font-medium text-slate-900 dark:text-slate-100">{q.title}</h2>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{q.description}</p>
+                  <h2 className="font-medium text-slate-900">{q.title}</h2>
+                  <p className="text-sm text-slate-600 mt-1">{q.description}</p>
                 </div>
                 <Link className="mt-4 btn-primary" to={`/quiz/${q.id}`}>Iniciar</Link>
               </div>
             </li>
           ))}
         </ul>
-        <div className="text-center text-sm text-slate-600 dark:text-slate-300">
+  <div className="text-center text-sm text-slate-600">
           <Link
             ref={adminLinkRef}
             className="underline"

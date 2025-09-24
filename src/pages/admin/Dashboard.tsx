@@ -3,7 +3,6 @@ import { api } from '../../services/api'
 import { Link } from 'react-router-dom'
 import React, { Suspense } from 'react'
 const AdminBarChart = React.lazy(() => import('./AdminBarChart'))
-import { ThemeToggle } from '../../components/ThemeToggle'
 
 type ResultRow = {
   id: string
@@ -48,20 +47,19 @@ export function AdminDashboard() {
   }
 
   return (
-    <main className="min-h-screen app-bg-light dark:app-bg-dark">
+  <main className="min-h-screen app-bg-light">
       <div className="max-w-5xl mx-auto p-6 space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Panel de Administración</h1>
           <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <button onClick={onExport} className="px-3 py-2 bg-slate-900 text-white rounded-xl">Exportar CSV</button>
+            <button onClick={onExport} className="btn-primary">Exportar CSV</button>
           </div>
         </div>
 
       {error && <div className="text-red-600">{error}</div>}
       {loading ? <div>Cargando…</div> : (
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-sm">
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
             <h2 className="font-medium mb-3">Resultados recientes</h2>
             <div className="overflow-auto">
               <table className="w-full text-sm">
@@ -86,7 +84,7 @@ export function AdminDashboard() {
               </table>
             </div>
           </div>
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-sm">
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
             <h2 className="font-medium mb-3">Evaluaciones por tipo</h2>
             <Suspense fallback={<div className="text-sm text-slate-600">Cargando gráfico…</div>}>
               <AdminBarChart data={stats} />

@@ -7,7 +7,6 @@ import { BDI2_ITEMS, scoreBDI2 } from '../shared/quizzes/bdi2'
 import { api } from '../services/api'
 import { ProgressHeader } from '../components/ProgressHeader'
 import { OptionCard } from '../components/OptionCard'
-import { ThemeToggle } from '../components/ThemeToggle'
 
 export function Quiz() {
   const { id } = useParams()
@@ -89,19 +88,18 @@ export function Quiz() {
     return () => window.removeEventListener('beforeunload', handler)
   }, [my])
 
-  // El tema se gestiona globalmente con ThemeToggle; sin estado local de 'dark' aquí.
+  // Tema fijo (claro)
 
   return (
     <div>
       <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-white text-slate-900 px-3 py-2 rounded shadow">Saltar al contenido</a>
-      <main id="contenido" role="main" className={`max-w-xl mx-auto p-4 space-y-6 pb-24 dark:text-slate-100 min-h-screen app-bg-light dark:app-bg-dark`} onKeyDown={onKeyDown} tabIndex={-1}>
+  <main id="contenido" role="main" className={`max-w-xl mx-auto p-4 space-y-6 pb-24 min-h-screen app-bg-light`} onKeyDown={onKeyDown} tabIndex={-1}>
         <ProgressHeader current={index + 1} total={totalItems} />
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">Cuestionario</h1>
-          <ThemeToggle />
         </div>
 
-  <fieldset className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-sm question-enter ${index % 2 === 0 ? 'slide-left-in' : 'slide-right-in'}`}>
+  <fieldset className={`bg-white border border-slate-200 rounded-2xl p-4 shadow-sm question-enter ${index % 2 === 0 ? 'slide-left-in' : 'slide-right-in'}`}>
           <legend className="font-medium mb-4 px-1">{q.prompt}</legend>
           <div className="space-y-2">
             {q.options.map((opt: any) => (
@@ -117,7 +115,7 @@ export function Quiz() {
           </div>
         </fieldset>
 
-        <div className="fixed bottom-0 left-0 right-0 border-t border-slate-200 dark:border-slate-700 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-[0_-4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0_-4px_12px_rgba(0,0,0,0.35)] pb-[max(env(safe-area-inset-bottom),0px)]">
+  <div className="fixed bottom-0 left-0 right-0 border-t border-slate-200 bg-white/90 backdrop-blur-md shadow-[0_-4px_12px_rgba(0,0,0,0.08)] pb-[max(env(safe-area-inset-bottom),0px)]">
           <div className="max-w-xl mx-auto p-3 flex items-center justify-between gap-2">
           <button
             className="btn-outline min-h-[44px]"
