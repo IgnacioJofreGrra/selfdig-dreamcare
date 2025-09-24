@@ -1,7 +1,48 @@
 import { Link } from 'react-router-dom'
+import { useCallback, useEffect, useRef } from 'react'
 import { quizzes } from '../shared/quizzes/meta'
 
 export function Home() {
+  // Prefetch inteligente de rutas de administración y gráfico (Recharts) cuando el link
+  // aparece en viewport, hover o foco; mejora el tiempo de navegación sin costo inicial.
+  const adminLinkRef = useRef<HTMLAnchorElement | null>(null)
+  const prefetchedRef = useRef(false)
+
+  const prefetchAdmin = useCallback(() => {
+    if (prefetchedRef.current) return
+    prefetchedRef.current = true
+    const trigger = () => {
+      import('../pages/admin/Login')
+      import('../pages/admin/Dashboard')
+      import('../pages/admin/UserDetail')
+      import('../pages/admin/AdminBarChart')
+    }
+    if (typeof window !== 'undefined') {
+      const w = window as unknown as { requestIdleCallback?: (cb: () => void) => void }
+      const fallback = (cb: () => void) => setTimeout(cb, 100)
+      const ric = typeof w.requestIdleCallback === 'function' ? w.requestIdleCallback : fallback
+      ric(trigger)
+    } else {
+      trigger()
+    }
+  }, [])
+
+  useEffect(() => {
+    const el = adminLinkRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') return
+    const obs = new IntersectionObserver((entries, observer) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          prefetchAdmin()
+          observer.disconnect()
+          break
+        }
+      }
+    }, { rootMargin: '200px' })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [prefetchAdmin])
+
   return (
     <>
       <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-white text-slate-900 px-3 py-2 rounded shadow">Saltar al contenido</a>
@@ -25,7 +66,15 @@ export function Home() {
           ))}
         </ul>
         <div className="text-center text-sm text-slate-600 dark:text-slate-300">
-          <Link className="underline" to="/admin/login">Administración</Link>
+          <Link
+            ref={adminLinkRef}
+            className="underline"
+            to="/admin/login"
+            onMouseEnter={prefetchAdmin}
+            onFocus={prefetchAdmin}
+          >
+            Administración
+          </Link>
         </div>
       </div>
       </main>
